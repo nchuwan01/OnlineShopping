@@ -1,1 +1,1 @@
-export const APILocation = "https://3.145.154.246";
+export const APILocation = "http://localhost:8080";
