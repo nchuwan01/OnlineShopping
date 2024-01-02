@@ -35,6 +35,7 @@ function Create_Account() {
         }else{
             axios.post(`${APILocation}/register`, data)
             .then(response =>{
+                console.log("Request made to "+{APILocation})
                 message = response.data;
                 document.getElementById("message").innerHTML = message;
             })
