@@ -1,4 +1,4 @@
-package com.MainJavaFolder.demo;
+package com.MainJavaFolder.ShoppingOnlineMain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
