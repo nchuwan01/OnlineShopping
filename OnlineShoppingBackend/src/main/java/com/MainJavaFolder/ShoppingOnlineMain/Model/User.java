@@ -15,7 +15,18 @@ public class User {
     private String email;
     private String password;
 
+    public User()
+    {
+        
+    }
 
+    public User(Integer uid, String email, String password)
+    {
+        this.uid = uid;
+        this.email = email;
+        this.password= password;
+
+    }
     
     public Integer getUid() {
         return uid;

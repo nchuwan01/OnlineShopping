@@ -18,12 +18,17 @@ public class UsersController {
     @Autowired
     UserService userService;
 
-    // @PostMapping("/register")
-    // public String registerUser(@RequestBody String data)
-    // {
-    //     System.out.println(data);
-    //     return  "Hello";
-    // }
+
+
+    @PostMapping("/register")
+    public String registerUser()
+    {
+        User customer = new User(2, "rabin", "Chuwan");
+
+        userService.createUser(customer);
+        
+        return  "Completed!";
+    }
 
     @GetMapping("/users")
     public List<User> getUsers()
@@ -31,6 +36,7 @@ public class UsersController {
         return userService.getAllUsers();
     }
 
+  
     
     // @GetMapping("/show")
     // public String Check()

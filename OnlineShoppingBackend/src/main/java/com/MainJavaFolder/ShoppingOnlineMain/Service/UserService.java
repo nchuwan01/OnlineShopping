@@ -14,8 +14,15 @@ public class UserService {
     @Autowired
     UserDao userDao;
 
+
     public List<User> getAllUsers() {
         return userDao.findAll();
+    }
+
+    public void createUser(User customer) {
+        userDao.save(customer);
+        
+        
     }
 
     
