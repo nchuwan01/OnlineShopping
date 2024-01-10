@@ -8,7 +8,10 @@ import com.MainJavaFolder.ShoppingOnlineMain.Model.User;
 @Repository
 public interface UserDao extends JpaRepository<User, Integer> {
 
-   
+   public User findByUsername(String username);
+
+   public User getReferenceByUid(int uid);
+
 
 
     

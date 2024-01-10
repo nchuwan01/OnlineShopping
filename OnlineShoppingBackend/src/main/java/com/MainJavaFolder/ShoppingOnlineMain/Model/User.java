@@ -1,5 +1,7 @@
 package com.MainJavaFolder.ShoppingOnlineMain.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,20 +14,20 @@ public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Integer uid;
+    @JsonProperty("user_name")
+    private String username;
     private String email;
     private String password;
 
-    public User()
+
+    public String getUsername()
     {
-        
+        return username;
+
     }
-
-    public User(Integer uid, String email, String password)
+    public void setUsername(String username)
     {
-        this.uid = uid;
-        this.email = email;
-        this.password= password;
-
+        this.username = username;
     }
     
     public Integer getUid() {
