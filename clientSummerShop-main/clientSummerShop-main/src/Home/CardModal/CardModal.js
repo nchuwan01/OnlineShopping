@@ -10,7 +10,7 @@ import {APILocation} from "../../httpAPILocation/httpLocation";
 function CardModal()
 { 
   const[image, setImage]= useState("");
-  const[sid, setSid] = useState();
+  const[uid, setUid] = useState();
   const[name,setName] = useState();
   const[description, setDescription] = useState();
   const[price, setPrice] = useState();
@@ -23,7 +23,7 @@ function CardModal()
 
   let navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect( () => {
   
 
   
@@ -31,15 +31,16 @@ function CardModal()
       try {
         // Get item details
         const itemRes = await axios.get(`${APILocation}/login/item/${itemId}`);
-        const { sid, name, description, price, image } = itemRes.data[0];
-        setSid(sid);
+        const { uid, name, description, price, image } = itemRes.data;
+
+        setUid(uid);
         setName(name);
         setDescription(description);
         setPrice(price);
         setImage(image);
   
         // Get poster details
-        const userRes = await axios.get(`${APILocation}/login/user/${sid}`);
+        const userRes = await axios.get(`${APILocation}/login/user/${uid}`);
          setPoster(userRes.data);
   
         // Check if the logged-in user is the owner of the item
@@ -48,7 +49,6 @@ function CardModal()
           }
         );
         const resultData = resultRes.data;
-        console.log("result data: ",resultData)
         if (resultData === userRes.data) {
           setOwner(false);
         }
@@ -63,14 +63,15 @@ function CardModal()
       function handleSubmit(event)
       {   
         event.preventDefault();     
-        axios.post(`${APILocation}/login/message`,[{ "sid":sid, "message": message, "itemName": name} ], 
+        axios.post(`${APILocation}/login/message`,{ "uid":uid, "message": message, "itemName": name} , 
           {
             withCredentials: true        
           })
         .then(res =>{
-          console.log(res.data);
           if(document.getElementById("message")==null){
             let newDiv = document.createElement("h1");
+
+            console.log("This is other data " + res);
             let text = "";
             if(res.data === "Sign In")
             {

@@ -1,4 +1,4 @@
-import {useState } from "react";
+import {useState, useEffect } from "react";
 import axios from "axios";
 import "./../HomeCSS/homeStyle.css";
 import { useNavigate } from "react-router-dom";
@@ -8,34 +8,31 @@ import {APILocation} from "../../httpAPILocation/httpLocation";
     const [householdData, setHouseholdData] = useState([]);
     let navigate = useNavigate();
 
-    let arrayInfo = [];
+    //let arrayInfo = [];
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`${APILocation}/login/${categoryType}`);
+          let data = response.data;
+  
+          data = data
+            .filter((item) => item.category === categoryType)
+            .reverse();
 
-      axios
-        .get(`${APILocation}/login/sell`)
-        .then((res) => {
-            let data = res.data;
-           data.map((item)=>{
-              if(item.category === categoryType)
-              {
-                arrayInfo.push(item);    
-              }   
-              arrayInfo = arrayInfo.reverse();
-              setHouseholdData(arrayInfo);
-              return householdData;
-            })
-
-
-
-        })
-        .catch((error) => {
+          
+          setHouseholdData(data);
+        } catch (error) {
           console.log(error);
-        });
-
+        }
+      };
+  
+      fetchData();
+    }, [categoryType]);
     
 
     function clicked(itemData)
     {
-      navigate("/login/item/"+itemData.itemID)
+      navigate("/login/item/"+itemData.pid)
     }
 
     return (
@@ -54,7 +51,7 @@ import {APILocation} from "../../httpAPILocation/httpLocation";
                   <div className="card-footer">
                     <h5 className="card-title">{item.name}</h5>
                     <p className="card-text" id="priceParagraph">${item.price}</p>
-                    <small className="text-muted">Posted on {Date(item.created_at).slice(0,16)}</small>
+                    <small className="text-muted">Posted on {item.created_at}</small>
                   </div>
               </div>
           ))}

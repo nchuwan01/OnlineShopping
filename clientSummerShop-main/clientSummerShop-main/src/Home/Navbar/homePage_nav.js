@@ -35,6 +35,7 @@ function HomePage_Nav() {
       }
     })
   .then(result => {
+    console.log(result);
     if(result.data)
     {
       console.log(result)

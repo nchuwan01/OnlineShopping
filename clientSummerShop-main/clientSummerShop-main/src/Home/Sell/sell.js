@@ -46,20 +46,22 @@ function Sell() {
     formData.append("name", item);
   
     axios.post(`${APILocation}/login/sell`,formData, {
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+      },
     })
     .then((res) =>{
       console.log(res.data);
       if(document.getElementById("message")==null){
         let newDiv = document.createElement("h1");
         let text = "";
-        if(res.data === "Sign In")
+        console.log(res.data);
+        text = document.createTextNode(res.data);
+
+
+        if(res.data === "On Sale!")
         {
-          text = document.createTextNode("Must be signed in to sell");
-        }
-        else 
-        {
-          text = document.createTextNode("Your item is on sale now!");
           if(category === "Household Item")
           {
             navigate(`/login/Household`)

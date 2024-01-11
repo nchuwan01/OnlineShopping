@@ -35,7 +35,6 @@ function Create_Account() {
         }else{
             axios.post(`${APILocation}/register`, data)
             .then(response =>{
-                console.log("Request made to "+{APILocation})
                 message = response.data;
                 document.getElementById("message").innerHTML = message;
             })
@@ -60,7 +59,7 @@ function Create_Account() {
                     </div>
                     <div className="label_input">
                         <label> Email: </label>
-                        <input type="email" className="createInputs" value={email} onChange={(e)=>{setEmail(e.target.value)}}  name="email" placeholder="Ex: john02@gamil.com" required></input>
+                        <input type="email" className="createInputs" value={email} onChange={(e)=>{setEmail(e.target.value)}} name="email" placeholder="Ex: john02@aurora.edu" required></input>
                     </div>
                     <div className="label_input">
                         <label> Password: </label>

@@ -24,7 +24,8 @@ function Sign_In() {
       }
     })
     .then(res =>{
-      if(res.data.detail)
+      console.log(res);
+      if(res.data === "Success")
       {  
         navigate("/login/Textbooks");
       }else{
