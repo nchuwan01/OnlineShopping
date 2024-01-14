@@ -26,7 +26,7 @@ import com.MainJavaFolder.ShoppingOnlineMain.Service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = "https://summer-shopping.vercel.app/", allowCredentials = "true")
 @RestController
 public class ItemController {
 
